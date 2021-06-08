@@ -8,12 +8,17 @@ import { Blaise } from "../screens/Blaise";
 
 const styles = StyleSheet.create({
   icon: { width: 25, height: 25, marginTop: 15 },
+  settingsScreenContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
 
 function SettingsScreen() {
   return (
-    <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Settings!</Text>
+    <Layout style={styles.settingsScreenContainer}>
+      <Text>Ajustes</Text>
     </Layout>
   );
 }
@@ -26,7 +31,7 @@ const displayIcon = ({ route }: { route: { name: string } }) => ({
 
     if (route.name === "Blaise")
       iconName = focused ? "speaker" : "speaker-outline";
-    if (route.name === "Settings")
+    if (route.name === "Ajustes")
       iconName = focused ? "settings-2" : "settings-2-outline";
 
     const fill = focused ? lapisLazuli : grey;
@@ -48,7 +53,7 @@ export const Navigator = () => (
         component={Blaise}
         options={{ tabBarBadge: 3 }}
       />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Ajustes" component={SettingsScreen} />
     </Tab.Navigator>
   </NavigationContainer>
 );

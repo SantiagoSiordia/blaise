@@ -1,10 +1,24 @@
-import React from "react";
-import { Layout, Text } from "@ui-kitten/components";
+import React, { FC } from "react";
+import { Layout } from "@ui-kitten/components";
+import { Image, StyleSheet } from "react-native";
+import TemperatureController from "../components/TemperatureController";
 
-export const Blaise = () => {
+const styles = StyleSheet.create({
+  container: { flex: 1, justifyContent: "center", alignItems: "center" },
+  blaiseImage: {
+    width: 200,
+    height: 200,
+  },
+});
+
+export const Blaise: FC = () => {
   return (
-    <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Blaise!</Text>
+    <Layout style={styles.container}>
+      <TemperatureController />
+      <Image
+        source={require("../assets/Blaise.png")}
+        style={styles.blaiseImage}
+      />
     </Layout>
   );
 };
