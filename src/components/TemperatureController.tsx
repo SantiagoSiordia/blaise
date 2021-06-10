@@ -2,6 +2,9 @@ import React, { FC, useState } from "react";
 import { Button, StyleSheet, TextInput, View } from "react-native";
 import { Text } from "@ui-kitten/components";
 import { alabaster, cerise, lapisLazuli } from "../colors";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../features/RootReducer";
+import { appReducer } from "../features/AppReducer";
 
 const styles = StyleSheet.create({
   container: {
@@ -10,6 +13,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     borderColor: alabaster,
     borderWidth: 1,
+    width: "100%",
     marginVertical: 16,
   },
   input: {
@@ -23,13 +27,23 @@ const styles = StyleSheet.create({
   form: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
+    width: "100%",
   },
 });
 
 const TemperatureController: FC = () => {
-  const [temperature, setTemperature] = useState<string>("250");
+  const temperature = useSelector(
+    (state: RootState) => state.app.defaultTemperature,
+  );
+
+  const isDefaultTemperature = useSelector(
+    (state: RootState) => state.app.isDefaultTemperature,
+  );
+
   const [userTemperature, setUserTemperature] = useState<string>("");
+
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <Text>Temperatura actual {temperature} ℃</Text>
@@ -38,13 +52,23 @@ const TemperatureController: FC = () => {
           style={styles.input}
           onChangeText={setUserTemperature}
           value={userTemperature}
-          placeholder={"Temperatura"}
+          placeholder={"Nueva"}
           placeholderTextColor={alabaster}
         />
         <Button
-          title={"Actualizar temperatura"}
+          title={
+            isDefaultTemperature
+              ? "Actualizar temperatura"
+              : "Resetear temperatura"
+          }
+          disabled={userTemperature === "" && isDefaultTemperature}
           onPress={() => {
-            setTemperature(userTemperature);
+            if (userTemperature.length > 0) {
+              dispatch(
+                appReducer.actions.setDefaultTemperature(+userTemperature),
+              );
+              setUserTemperature("");
+            } else dispatch(appReducer.actions.resetDefaultTemperature());
           }}
           color={lapisLazuli}
         />
