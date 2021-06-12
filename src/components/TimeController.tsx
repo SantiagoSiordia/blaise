@@ -2,6 +2,9 @@ import React, { FC, useState } from "react";
 import { Button, StyleSheet, View } from "react-native";
 import { Text } from "@ui-kitten/components";
 import { alabaster, cerise, evaDark, lapisLazuli } from "../colors";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../features/RootReducer";
+import { appReducer } from "../features/AppReducer";
 
 const styles = StyleSheet.create({
   container: {
@@ -31,31 +34,68 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     width: "100%",
   },
+  remainingTime: {
+    flexDirection: "row",
+    marginBottom: 16,
+    justifyContent: "space-between",
+    width: "100%",
+    paddingHorizontal: 16,
+  },
+  time: {
+    fontSize: 20,
+    fontWeight: "bold",
+    fontVariant: ["tabular-nums"],
+  },
 });
 
+const minutesToMinutesAndSeconds = (minutes: number) => [
+  Math.floor((minutes * 60) / 60),
+  Math.floor((minutes * 60) % 60),
+];
+
 const TimeController: FC = () => {
-  const [isPaused, setIsPaused] = useState<boolean>(false);
+  const timeSet = useSelector((state: RootState) => state.app.timeSet);
+
+  // const isDefaultTimeSet = useSelector(
+  //   (state: RootState) => state.app.isDefaultTimeSet,
+  // );
+
+  const [isPaused, setIsPaused] = useState<boolean>(true);
+
+  const [minutes, seconds] = minutesToMinutesAndSeconds(timeSet);
+
+  const dispatch = useDispatch();
+
+  // const t = setInterval(() => {
+  //   if (!isPaused) {
+  //     dispatch(appReducer.actions.decrementTimeSet());
+  //   }
+  // }, 1000);
+
+  const handleReset = () => {
+    dispatch(appReducer.actions.resetDefaultTimeSet());
+  };
+
+  const handlePause = () => {
+    setIsPaused((prev) => !prev);
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Tiempo restante</Text>
-      <View style={styles.form}>
-        <Text> 00:00.00</Text>
+      <View style={styles.remainingTime}>
+        <Text style={styles.time}>Tiempo restante</Text>
+        <Text style={styles.time}>{`${String(minutes).padStart(
+          2,
+          "0",
+        )}:${String(seconds).padStart(2, "0")}`}</Text>
       </View>
       <View style={styles.buttons}>
         <Button
-          title={isPaused ? "Continuar" : "Pausa"}
-          onPress={() => {
-            setIsPaused((prev) => !prev);
-          }}
+          title={isPaused ? "Iniciar" : "Pausa"}
+          onPress={handlePause}
           color={isPaused ? lapisLazuli : evaDark}
         />
-        <Button
-          title={"Cancelar"}
-          onPress={() => {
-            return;
-          }}
-          color={cerise}
-        />
+        <Button title={"Reiniciar"} onPress={handleReset} color={lapisLazuli} />
       </View>
     </View>
   );

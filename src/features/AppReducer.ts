@@ -5,6 +5,7 @@ export interface AppState {
   defaultTimeSet: number;
   isDefaultTemperature: boolean;
   isDefaultTimeSet: boolean;
+  timeSet: number;
 }
 
 const defaultTemperature = 250;
@@ -13,6 +14,7 @@ const defaultTimeSet = 30;
 export const initialState: AppState = {
   defaultTemperature,
   defaultTimeSet,
+  timeSet: defaultTimeSet,
   isDefaultTemperature: true,
   isDefaultTimeSet: true,
 };
@@ -32,9 +34,17 @@ const appSlice = createSlice({
     },
     setDefaultTimeSet(state, action: PayloadAction<number>) {
       state.defaultTimeSet = action.payload;
+      state.isDefaultTimeSet = state.defaultTimeSet === defaultTimeSet;
     },
     resetDefaultTimeSet(state) {
       state.defaultTimeSet = defaultTimeSet;
+      state.isDefaultTemperature = true;
+    },
+    decrementTimeSet(state) {
+      state.timeSet -= 1 / 1000;
+    },
+    resetTimeSet(state) {
+      state.timeSet = state.defaultTimeSet;
     },
   },
 });
