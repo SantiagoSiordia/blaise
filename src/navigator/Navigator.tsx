@@ -1,10 +1,11 @@
 import React from "react";
-import { Icon, Layout, Text } from "@ui-kitten/components";
+import { Icon } from "@ui-kitten/components";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
 import { grey, lapisLazuli } from "../colors";
 import { Blaise } from "../screens/Blaise";
+import Settings from "../screens/Settings";
 
 const styles = StyleSheet.create({
   icon: { width: 25, height: 25, marginTop: 15 },
@@ -14,14 +15,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-
-function SettingsScreen() {
-  return (
-    <Layout style={styles.settingsScreenContainer}>
-      <Text>Ajustes</Text>
-    </Layout>
-  );
-}
 
 const Tab = createBottomTabNavigator();
 
@@ -51,9 +44,9 @@ export const Navigator = () => (
       <Tab.Screen
         name="Blaise"
         component={Blaise}
-        options={{ tabBarBadge: 3 }}
+        // options={{ tabBarBadge: 3 }}
       />
-      <Tab.Screen name="Ajustes" component={SettingsScreen} />
+      <Tab.Screen name="Ajustes" component={Settings} />
     </Tab.Navigator>
   </NavigationContainer>
 );
