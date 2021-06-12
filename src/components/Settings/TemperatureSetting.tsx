@@ -37,7 +37,7 @@ const TemperatureSetting: FC = () => {
         />
         <Button
           title={"Actualizar"}
-          onPress={() => handleSetDefaultTemperature(20)}
+          onPress={() => handleSetDefaultTemperature(newTemperature)}
           color={lapisLazuli}
         />
       </View>
