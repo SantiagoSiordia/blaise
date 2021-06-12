@@ -8,9 +8,7 @@ import { appReducer } from "../../features/AppReducer";
 import styles from "./styles";
 
 const TemperatureController: FC = () => {
-  const temperature = useSelector(
-    (state: RootState) => state.app.defaultTemperature,
-  );
+  const temperature = useSelector((state: RootState) => state.app.temperature);
 
   const isDefaultTemperature = useSelector(
     (state: RootState) => state.app.isDefaultTemperature,
@@ -39,11 +37,9 @@ const TemperatureController: FC = () => {
           disabled={userTemperature === "" && isDefaultTemperature}
           onPress={() => {
             if (userTemperature.length > 0) {
-              dispatch(
-                appReducer.actions.setDefaultTemperature(+userTemperature),
-              );
+              dispatch(appReducer.actions.setTemperature(+userTemperature));
               setUserTemperature("");
-            } else dispatch(appReducer.actions.resetDefaultTemperature());
+            } else dispatch(appReducer.actions.resetTemperature());
           }}
           color={lapisLazuli}
         />
