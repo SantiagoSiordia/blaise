@@ -1,10 +1,9 @@
 Blaise
 ======
 
-This project is just a simple
-app that controls our final major project.
+This project is just a simple app that controls our final major project.
 
-### Future contributors: 
+### Contributors: 
  - Luis Antonio Medina Sanchez
  - Raul Fernando Cervantes Silva
 
