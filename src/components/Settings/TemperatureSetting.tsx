@@ -7,7 +7,7 @@ import { RootState } from "../../features/RootReducer";
 import { appReducer } from "../../features/AppReducer";
 import styles from "./styles";
 
-const TemperatureController: FC = () => {
+const TemperatureSetting: FC = () => {
   const defaultTemperature = useSelector(
     (state: RootState) => state.app.defaultTemperature,
   );
@@ -45,4 +45,4 @@ const TemperatureController: FC = () => {
   );
 };
 
-export default TemperatureController;
+export default TemperatureSetting;

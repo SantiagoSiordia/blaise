@@ -8,7 +8,7 @@ import { appReducer } from "../../features/AppReducer";
 import styles from "./styles";
 import minutesToMinutesAndSeconds from "../../utils/minutesToMinutesAndSeconds";
 
-const TimeController: FC = () => {
+const TimeSetting: FC = () => {
   const defaultTimeSet = useSelector(
     (state: RootState) => state.app.defaultTimeSet,
   );
@@ -49,4 +49,4 @@ const TimeController: FC = () => {
   );
 };
 
-export default TimeController;
+export default TimeSetting;
