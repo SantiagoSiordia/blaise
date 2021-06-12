@@ -13,7 +13,7 @@ const TimeSetting: FC = () => {
     (state: RootState) => state.app.defaultTimeSet,
   );
 
-  const [newTime, setNewTime] = useState<number | undefined>(defaultTimeSet);
+  const [newTime, setNewTime] = useState<number>(defaultTimeSet);
 
   const [minutes, seconds] = minutesToMinutesAndSeconds(defaultTimeSet);
 
@@ -41,7 +41,7 @@ const TimeSetting: FC = () => {
         />
         <Button
           title={"Actualizar"}
-          onPress={() => handleSetDefaultTime(20)}
+          onPress={() => handleSetDefaultTime(+newTime)}
           color={lapisLazuli}
         />
       </View>
