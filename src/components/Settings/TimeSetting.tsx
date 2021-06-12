@@ -1,58 +1,12 @@
 import React, { FC, useState } from "react";
-import { Button, StyleSheet, TextInput, View } from "react-native";
+import { Button, TextInput, View } from "react-native";
 import { Text } from "@ui-kitten/components";
-import { alabaster, cerise, lapisLazuli } from "../colors";
+import { alabaster, lapisLazuli } from "../../colors";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../features/RootReducer";
-import { appReducer } from "../features/AppReducer";
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    padding: 16,
-    borderRadius: 16,
-    borderColor: alabaster,
-    borderWidth: 1,
-    marginVertical: 16,
-    width: "100%",
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    color: alabaster,
-    borderColor: cerise,
-    borderRadius: 8,
-  },
-  form: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttons: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    width: "100%",
-    alignItems: "center",
-  },
-  remainingTime: {
-    flexDirection: "row",
-    marginBottom: 16,
-    justifyContent: "space-between",
-    width: "100%",
-    paddingHorizontal: 16,
-  },
-  time: {
-    fontSize: 20,
-    fontWeight: "bold",
-    fontVariant: ["tabular-nums"],
-  },
-});
-
-const minutesToMinutesAndSeconds = (minutes: number) => [
-  Math.floor((minutes * 60) / 60),
-  Math.floor((minutes * 60) % 60),
-];
+import { RootState } from "../../features/RootReducer";
+import { appReducer } from "../../features/AppReducer";
+import styles from "./styles";
+import minutesToMinutesAndSeconds from "../../utils/minutesToMinutesAndSeconds";
 
 const TimeController: FC = () => {
   const defaultTimeSet = useSelector(

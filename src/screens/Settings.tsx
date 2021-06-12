@@ -1,9 +1,8 @@
 import React, { FC } from "react";
-import { Layout, Text } from "@ui-kitten/components";
-import { StyleSheet, View } from "react-native";
-import { useSelector } from "react-redux";
-import { RootState } from "../features/RootReducer";
-import TimeSetting from "../components/TimeSetting";
+import { Layout } from "@ui-kitten/components";
+import { StyleSheet } from "react-native";
+import TimeSetting from "../components/Settings/TimeSetting";
+import TemperatureSetting from "../components/Settings/TemperatureSetting";
 
 const styles = StyleSheet.create({
   settingsScreenContainer: {
@@ -15,15 +14,9 @@ const styles = StyleSheet.create({
 });
 
 const Settings: FC = () => {
-  const defaultTemperature = useSelector(
-    (state: RootState) => state.app.defaultTemperature,
-  );
   return (
     <Layout style={styles.settingsScreenContainer}>
-      <View>
-        <Text>Temperatura por defecto</Text>
-        <Text>{defaultTemperature}</Text>
-      </View>
+      <TemperatureSetting />
       <TimeSetting />
     </Layout>
   );

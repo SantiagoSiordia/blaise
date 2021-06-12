@@ -1,36 +1,11 @@
 import React, { FC, useState } from "react";
-import { Button, StyleSheet, TextInput, View } from "react-native";
+import { Button, TextInput, View } from "react-native";
 import { Text } from "@ui-kitten/components";
-import { alabaster, cerise, lapisLazuli } from "../colors";
+import { alabaster, lapisLazuli } from "../../colors";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../features/RootReducer";
-import { appReducer } from "../features/AppReducer";
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    padding: 16,
-    borderRadius: 16,
-    borderColor: alabaster,
-    borderWidth: 1,
-    width: "100%",
-    marginVertical: 16,
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    color: alabaster,
-    borderColor: cerise,
-    borderRadius: 8,
-  },
-  form: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-    width: "100%",
-  },
-});
+import { RootState } from "../../features/RootReducer";
+import { appReducer } from "../../features/AppReducer";
+import styles from "./styles";
 
 const TemperatureController: FC = () => {
   const temperature = useSelector(

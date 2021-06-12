@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { Layout } from "@ui-kitten/components";
 import { Image, StyleSheet } from "react-native";
-import TemperatureController from "../components/TemperatureController";
-import TimeController from "../components/TimeController";
+import TemperatureController from "../components/Controllers/TemperatureController";
+import TimeController from "../components/Controllers/TimeController";
 import OnButton from "../components/OnButton";
 
 const styles = StyleSheet.create({
