@@ -32,7 +32,7 @@ const TemperatureController: FC = () => {
         />
         <Button
           title={
-            isDefaultTemperature
+            isDefaultTemperature || userTemperature !== ""
               ? "Actualizar temperatura"
               : "Resetear temperatura"
           }
